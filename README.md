@@ -554,11 +554,4 @@ service cloud.firestore {
 
 This project is released under the MIT License. See the [LICENSE](LICENSE) file for details.
 
----
 
-> **Congratulations!** You now have a fully functional IoT Weather Monitoring system.  
-> - **Backend (Flask)** ingests MQTT messages and writes to Firestore.  
-> - **Pi-Client** publishes OpenWeatherMap data.  
-> - **Frontend (Angular)** displays live and historical weather dashboards.  
->  
-> Feel free to clone, customize, and extend for your own farm or IoT use cases. If you publish this on GitHub, remember to **remove all real API keys and service account files**, and replace them with placeholders as shown in the “Configuration” section above.
