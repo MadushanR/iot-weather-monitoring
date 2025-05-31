@@ -57,17 +57,6 @@ This project collects weather data from OpenWeatherMap (simulating sensors) usin
 
 ## Architecture
 
-\`\`\`
-+----------------------+       publishes       +-----------+       writes to       +--------------+
-|  Pi-Client (Python)  | — MQTT (weather/data) → Flask (Python) → Firestore (Admin SDK) ← Angular (Web) |
-+----------------------+                       +-----------+                      +--------------+
-       |                                                                                 ^
-       |                                                                                 |
-       |<----- Reads historical via REST API (Flask) ------------------------------------>|
-       |                                                                                 |
-       +--- Uses OpenWeatherMap API to fetch (no physical sensors) -------------------->+
-\`\`\`
-
 1. **Pi-Client** (\`pi-client/\`):  
    - Fetches current weather from OpenWeatherMap every \`PUBLISH_INTERVAL\` seconds.  
    - Publishes JSON to \`MQTT_TOPIC\` on \`MQTT_BROKER_HOST:MQTT_BROKER_PORT\`.
