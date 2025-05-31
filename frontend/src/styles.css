@@ -1,0 +1,11 @@
+/* Global resets */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* Import Leaflet’s CSS (optional if already in index.html) */
+/* @import "~leaflet/dist/leaflet.css"; */
+
+/* You can add any global styles here if you wish */

@@ -1,0 +1,61 @@
+<!-- Dashboard Template -->
+
+<div class="navbar">
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/settings">Settings</a>
+  <span class="signout" (click)="signOut()">Sign Out</span>
+</div>
+
+<!-- Ensure the map container is always in the DOM -->
+<div id="farmMap" style="height:300px; margin-bottom:20px;"></div>
+
+<!-- Live data and charts only show after latestReading is non-null -->
+<div class="container" *ngIf="latestReading">
+  <h2>Real-Time Weather Dashboard</h2>
+
+  <!-- Latest Reading Display -->
+  <div>
+    <h3>
+      Latest Reading ({{ latestReading.timestamp | date:'MMM d, h:mm:ss a' }})
+    </h3>
+    <p>Temperature: {{ latestReading.owm_temp }} °C</p>
+    <p>Humidity: {{ latestReading.owm_humidity }} %</p>
+    <p>Pressure: {{ latestReading.owm_pressure }} hPa</p>
+    <p>Wind Speed: {{ latestReading.owm_wind_speed }} m/s</p>
+    <p>Condition: {{ latestReading.owm_weather }}</p>
+  </div>
+
+  <!-- Historical Trends Section -->
+  <div>
+    <h3>Historical Trends</h3>
+    <form (ngSubmit)="loadHistorical(countInput)">
+      <label>Number of Records: </label>
+      <input
+        type="number"
+        [(ngModel)]="countInput"
+        name="countInput"
+        placeholder="e.g., 24"
+      />
+      <button type="submit">Load</button>
+    </form>
+    <div *ngIf="error" class="alert error">{{ error }}</div>
+
+    <div class="chart-container">
+      <canvas id="tempChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="humidityChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="pressureChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="windChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- If latestReading is still null, show a loading message -->
+<div class="container" *ngIf="!latestReading">
+  <p>Loading latest reading…</p>
+</div>

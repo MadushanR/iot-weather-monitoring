@@ -1,0 +1,78 @@
+<div class="navbar">
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/settings">Settings</a>
+  <span class="signout" (click)="signOut()">Sign Out</span>
+</div>
+
+<div class="container">
+  <h2>Settings</h2>
+  <div *ngIf="error" class="alert error">{{ error }}</div>
+  <div *ngIf="successMsg" class="alert success">{{ successMsg }}</div>
+  <form (ngSubmit)="save()">
+    <h4>Farm Location</h4>
+    <div class="form-group">
+      <label>Latitude:</label>
+      <input
+        type="number"
+        step="0.0001"
+        [(ngModel)]="settings.farmLocation.lat"
+        name="farmLat"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Longitude:</label>
+      <input
+        type="number"
+        step="0.0001"
+        [(ngModel)]="settings.farmLocation.lng"
+        name="farmLng"
+        required
+      />
+    </div>
+
+    <h4>Irrigation Thresholds</h4>
+    <div class="form-group">
+      <label>Min Soil Moisture (%):</label>
+      <input
+        type="number"
+        [(ngModel)]="settings.irrigationThresholds.soilMoistureMin"
+        name="minSoil"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Max Soil Moisture (%):</label>
+      <input
+        type="number"
+        [(ngModel)]="settings.irrigationThresholds.soilMoistureMax"
+        name="maxSoil"
+        required
+      />
+    </div>
+
+    <h4>Alert Preferences</h4>
+    <div class="form-group">
+      <label>
+        <input
+          type="checkbox"
+          [(ngModel)]="settings.alertPreferences.emailAlerts"
+          name="emailAlerts"
+        />
+        Email Alerts
+      </label>
+    </div>
+    <div class="form-group">
+      <label>
+        <input
+          type="checkbox"
+          [(ngModel)]="settings.alertPreferences.smsAlerts"
+          name="smsAlerts"
+        />
+        SMS Alerts
+      </label>
+    </div>
+
+    <button type="submit">Save Settings</button>
+  </form>
+</div>
