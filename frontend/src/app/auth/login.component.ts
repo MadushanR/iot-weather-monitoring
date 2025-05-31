@@ -1,44 +1,42 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-  FormsModule
-} from '@angular/forms';
-import { AuthService } from '../services/auth.service';
-import { RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Router } from '@angular/router';
+import {
+  Auth,
+  signInWithEmailAndPassword
+} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
-  templateUrl: './login.component.html'
+  imports: [CommonModule, FormsModule, RouterModule],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginForm: FormGroup;
-  error: string | null = null;
+  email: string = '';
+  password: string = '';
+  errorMessage: string = '';
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
-    });
-  }
+  constructor(private auth: Auth, private router: Router) {}
 
-  onSubmit() {
-    if (this.loginForm.invalid) {
-      return;
+  async onSubmit() {
+    this.errorMessage = '';
+    try {
+      await signInWithEmailAndPassword(this.auth, this.email, this.password);
+      this.router.navigate(['/dashboard']);
+    } catch (err: any) {
+      // Simplify error message for user
+      if (err.code === 'auth/user-not-found') {
+        this.errorMessage = 'No account found with that email.';
+      } else if (err.code === 'auth/wrong-password') {
+        this.errorMessage = 'Incorrect password.';
+      } else if (err.code === 'auth/invalid-email') {
+        this.errorMessage = 'Invalid email address.';
+      } else {
+        this.errorMessage = 'Login failed. Please try again.';
+      }
     }
-    const { email, password } = this.loginForm.value;
-    this.authService
-      .signIn(email, password)
-      .then(() => this.router.navigate(['/dashboard']))
-      .catch(err => (this.error = err.message));
   }
 }

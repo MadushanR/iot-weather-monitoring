@@ -1,12 +1,12 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyDlGtxsAovAWJ4dQZkScbu34auPGwatPC4",
-    authDomain: "iot-weather-monitoring-e1dc7.firebaseapp.com",
-    projectId: "iot-weather-monitoring-e1dc7",
-    storageBucket: "iot-weather-monitoring-e1dc7.appspot.com",
-    messagingSenderId: "770505284184",
-    appId: "1:770505284184:web:f3f570722b5336d82e082d",
-    measurementId: "G-TSEBLW4TEM"
+    apiKey: "YOUR_FIREBASE_API_KEY",
+    authDomain: "YOUR_FIREBASE_PROJECT_IDfirebaseapp.com",
+    projectId: "YOUR_FIREBASE_PROJECT_ID",
+    storageBucket: "YOUR_FIREBASE_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_MESSAGINGSENDER_ID",
+    appId: "YOUR_APP_ID",
+    measurementId: "YOUR_MEASUREMENT_ID"
   }
 };

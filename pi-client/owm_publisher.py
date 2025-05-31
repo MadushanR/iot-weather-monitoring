@@ -12,10 +12,10 @@ BROKER_HOST = os.getenv("MQTT_BROKER_HOST", "localhost")
 BROKER_PORT = int(os.getenv("MQTT_BROKER_PORT", 1883))
 TOPIC       = os.getenv("MQTT_TOPIC", "weather/data")
 
-API_KEY     = "1ad614951db59600c37aaa1a7719c652"
-LAT         = "43.6532"
-LON         = "79.3832"
-UNITS       = "metric"
+API_KEY     = os.getenv("OPENWEATHERMAP_API_KEY")
+LAT         = os.getenv("LAT")
+LON         = os.getenv("LON")
+UNITS       = os.getenv("UNITS")
 
 INTERVAL    = int(os.getenv("PUBLISH_INTERVAL", 60))
 
