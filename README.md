@@ -300,7 +300,7 @@ export const environment = {
 ### 1. Clone the Repository
 
 \`\`\`bash
-git clone https://github.com/yourusername/iot-weather-monitoring.git
+git clone https://github.com/MadushanR/iot-weather-monitoring.git
 cd iot-weather-monitoring
 \`\`\`
 
